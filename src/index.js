@@ -30,21 +30,26 @@ class App extends Component {
      				 selectedVideo: null
      			  };
      /* This is going to be the default front page, whenver uses enters he will see a list of vidoes on his page b4 his query.*/
-     YTSearch({key: API_KEY, term: `Kylie Minogue`}, (videos)=>{
+     this.videoSearch('The Weeknd');
+ 
+ }
+  
+  videoSearch(term){
+         YTSearch({key: API_KEY, term: term}, (videos)=>{
 
-     	this.setState( 
-     		{//{videos}/* This syntax is applicable only for same key and same value ie. its samee as {videos: videos} */
-     		videos: videos,
-     		selectedVideo: videos[0]
+        this.setState( 
+            //{videos} This syntax is applicable only for same key and same value ie. its samee as {videos: videos} 
+           {
+            videos: videos,
+            selectedVideo: videos[0]
      });
      
-	});
- }
-
+    });
+  }
    render() {
    return (
              <div>
-             <SearchBar />
+             <SearchBar onSearchTermChange={term=>this.videoSearch(term)} />
              <VideoDetails video ={this.state.selectedVideo} />
              <VideoList 
              onVideoSelect ={selectedVideo => this.setState({selectedVideo})}

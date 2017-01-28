@@ -42,16 +42,21 @@ key---> when the input types, he doesnt actually change the <input /> value but 
         Cos input tells the state what the value should be but ideally we need the state to control the input 
         so below we change the value of input by setting it to the term of state */}
  	return  ( 
- 		     <div>
+ 		     <div className="search-bar">
  		     {/* input onChange = {event => console.log(event.target.value)} /> */}
  		     <input
  		     value ={this.state.term} 
- 		     onChange = {event => this.setState({term: event.target.value})} />
+ 		     onChange = {event => this.onInputChange(event.target.value)} />
  		     {/*value of input: {this.state.term}*/} 
   		     </div>
  		    ); 
+ 	} 
   //variables should be put inside curly braces in jsx and no semicolons. 
- } 
+     onInputChange(term) {
+         this.setState({term});
+         this.props.onSearchTermChange(term);
+     }
+ 
 
 // onInputChange(event){ replaced this function in one line above using es6.
 
