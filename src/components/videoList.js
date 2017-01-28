@@ -3,11 +3,18 @@ import React from 'react';
 import VideoListItem from './videoListItem';
 //props is videos from the index.js that we will collect here.
 //Whenver we refactor a fn based comp to a class based component props(arguement in fn based) get changed to this.props
-
+//Line13:We are taking onVideoSelect from App and passing it to VideoListItem.
 const VideoList = (props) => { 
     {/* Map is applied to the video array(whos length is 5) and on every video we have applied the VideoListItem where key and video are self created props to which each video array elemnt and its keytag is assigned */}
 	const videoItems = props.videos.map((video) => {
-		return <VideoListItem key = {video.etag} video = {video} />; 
+		return( 
+				<VideoListItem
+				onVideoSelect = {props.onVideoSelect} 
+				key = {video.etag} 
+				video = {video} />
+
+
+		      ); 
 	 });
 	return (
 			<ul className='col-md-4 list-group'>
